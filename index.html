@@ -61,21 +61,21 @@
         /* New CSS for image rotation */
         .rotated-90 {
             transform: rotate(90deg);
-            width: auto; 
-            height: 100%; 
-            max-width: none; 
+            width: auto; /* Adjust width to fit */
+            height: 100%; /* Adjust height to fit */
+            max-width: none; /* Override max-width for rotation */
         }
         .rotated-270 {
             transform: rotate(270deg);
-            width: auto; 
-            height: 100%; 
-            max-width: none; 
+            width: auto; /* Adjust width to fit */
+            height: 100%; /* Adjust height to fit */
+            max-width: none; /* Override max-width for rotation */
         }
         .rotated-180 {
             transform: rotate(180deg);
-            width: auto; 
-            height: 100%; 
-            max-width: none; 
+            width: auto; /* Adjust width to fit */
+            height: 100%; /* Adjust height to fit */
+            max-width: none; /* Override max-width for rotation */
         }
     </style>
 </head>
@@ -92,7 +92,7 @@
     <main class="container mx-auto px-4 pb-12">
         <section class="flex justify-center mb-12">
             <div class="photo-frame bg-white p-2 max-w-md">
-                <img id="papa-photo" src="http://googleusercontent.com/file_content/0" alt="Papa" class="w-full h-auto object-cover rotated-90">
+                <img id="papa-photo" src="https://ibb.co/1tRk2GXD" alt="Papa" class="w-full h-auto object-cover rotated-90">
                 <div class="text-center mt-2">
                     <button onclick="changePhoto()" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full text-sm">Change Photo</button>
                 </div>
@@ -204,12 +204,12 @@
 
         // Photo changer with rotation classes
         const photos = [
-            { src: "http://googleusercontent.com/file_content/0", rotation: "rotated-90" }, // WhatsApp Image 2025-07-12 at 12.19.20_b.jpg
-            { src: "http://googleusercontent.com/file_content/1", rotation: "rotated-90" }, // WhatsApp Image 2025-07-12 at 12.19.48_cd19c6f2.jpg
-            { src: "http://googleusercontent.com/file_content/2", rotation: "rotated-90" }, // WhatsApp Image 2025-07-12 at 12.21.14_9aa6c8ce.jpg
-            { src: "http://googleusercontent.com/file_content/4", rotation: "rotated-90" }, // WhatsApp Image 2025-07-12 at 12.27.56_cdfd305d.jpg
-            { src: "http://googleusercontent.com/file_content/5", rotation: "" }, // WhatsApp Image 2025-07-12 at 12.32.19_046b3c82.jpg
-            { src: "http://googleusercontent.com/file_content/3", rotation: "rotated-90" }  // WhatsApp Image 2025-07-12 at 12.22.09_3ed0e404.jpg
+            { src: "https://ibb.co/1tRk2GXD", rotation: "rotated-90" }, 
+            { src: "https://ibb.co/zhkL3k52", rotation: "rotated-90" }, 
+            { src: "https://ibb.co/dsnHq8LD", rotation: "rotated-90" }, 
+            { src: "https://ibb.co/NgbZMvwQ", rotation: "rotated-90" }, 
+            { src: "https://ibb.co/Kz9nGwZR", rotation: "" }, 
+            { src: "https://ibb.co/yBnKKyyv", rotation: "rotated-90" }  
         ];
         let currentPhoto = 0;
         
