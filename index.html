@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Papa!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
+        
+        .dancing-script {
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        .poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .heart-beat {
+            animation: heartbeat 1.5s ease-in-out infinite both;
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .photo-frame {
+            border: 15px solid #f8d7a3;
+            border-radius: 5px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transform: rotate(-3deg);
+            transition: all 0.3s ease;
+        }
+        
+        .photo-frame:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            opacity: 0;
+        }
+        /* New CSS for image rotation */
+        .rotated-90 {
+            transform: rotate(90deg);
+            width: auto; 
+            height: 100%; 
+            max-width: none; 
+        }
+        .rotated-270 {
+            transform: rotate(270deg);
+            width: auto; 
+            height: 100%; 
+            max-width: none; 
+        }
+        .rotated-180 {
+            transform: rotate(180deg);
+            width: auto; 
+            height: 100%; 
+            max-width: none; 
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-pink-100 to-yellow-50 min-h-screen poppins overflow-x-hidden">
+    <div id="confetti-container" class="fixed top-0 left-0 w-full h-full pointer-events-none z-50"></div>
+
+    <header class="text-center py-8 px-4">
+        <h1 class="text-4xl md:text-6xl font-bold dancing-script text-pink-600 mb-4">Happy Birthday Papa!</h1>
+        <div class="heart-beat inline-block">
+            <i class="fas fa-heart text-red-500 text-4xl"></i>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 pb-12">
+        <section class="flex justify-center mb-12">
+            <div class="photo-frame bg-white p-2 max-w-md">
+                <img id="papa-photo" src="http://googleusercontent.com/file_content/0" alt="Papa" class="w-full h-auto object-cover rotated-90">
+                <div class="text-center mt-2">
+                    <button onclick="changePhoto()" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-full text-sm">Change Photo</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-white rounded-lg shadow-lg p-6 mb-12 max-w-3xl mx-auto">
+            <h2 class="text-2xl font-bold text-center text-purple-700 mb-4 dancing-script">To The World's Best Dad</h2>
+            <div class="text-gray-700 text-lg leading-relaxed">
+                <p class="mb-4">Dear Papa,</p>
+                <p class="mb-4">On your special day, I want to take a moment to tell you how much you mean to me. You've been my hero, my guide, and my biggest supporter throughout my life.</p>
+                <p class="mb-4">Your wisdom, strength, and unconditional love have shaped me into the person I am today. You've taught me the value of hard work, the importance of kindness, and the power of perseverance.</p>
+                <p class="mb-4">Today, I celebrate you - the man who has given so much and asked for so little in return. May this year bring you health, happiness, and all the joy you deserve.</p>
+                <p class="text-right font-bold text-pink-600">With all my love,</p>
+                <p class="text-right font-bold text-pink-600">A.Rishi</p> 
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-center text-yellow-600 mb-8 dancing-script">Precious Memories</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                    <div class="text-center text-4xl text-blue-500 mb-2">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-2">Your Guidance</h3>
+                    <p class="text-gray-600">Remember when you taught me to ride a bike? Your patience and encouragement made all the difference.</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                    <div class="text-center text-4xl text-green-500 mb-2">
+                        <i class="fas fa-laugh-beam"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-2">Your Laughter</h3>
+                    <p class="text-gray-600">Your laughter fills our home with joy. Those silly jokes you tell still make me smile.</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+                    <div class="text-center text-4xl text-red-500 mb-2">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-2">Your Love</h3>
+                    <p class="text-gray-600">No matter what, I've always known your love is unconditional. That security means everything.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-gradient-to-r from-yellow-100 to-pink-100 rounded-2xl p-8 mb-12 shadow-lg">
+            <h2 class="text-3xl font-bold text-center text-purple-700 mb-6 dancing-script">Birthday Wishes For You</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-3 text-blue-600">Health & Happiness</h3>
+                    <p class="text-gray-700">May you be blessed with excellent health and boundless happiness in the coming year.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-3 text-green-600">Peace & Prosperity</h3>
+                    <p class="text-gray-700">May peace fill your days and prosperity follow all your endeavors.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-3 text-yellow-600">Adventure & Joy</h3>
+                    <p class="text-gray-700">May you experience wonderful adventures and find joy in every moment.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="text-xl font-semibold mb-3 text-red-600">Love & Appreciation</h3>
+                    <p class="text-gray-700">May you feel loved and appreciated every day, just as you've made us feel all our lives.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-6 dancing-script text-pink-600">Make a Wish!</h2>
+            <div class="flex justify-center">
+                <div class="relative" onclick="lightCandles()" style="cursor: pointer;">
+                    <div class="w-48 h-32 bg-gradient-to-b from-amber-200 to-amber-300 rounded-t-full"></div>
+                    <div class="w-56 h-8 bg-gradient-to-b from-pink-300 to-pink-400 rounded-full -mt-2"></div>
+                    <div class="w-40 h-16 bg-gradient-to-b from-amber-300 to-amber-400 rounded-b-full mx-auto"></div>
+                    
+                    <div id="candle1" class="absolute top-0 left-1/4 w-2 h-12 bg-gradient-to-b from-white to-blue-200 rounded-t-sm">
+                        <div class="flame hidden absolute -top-4 left-1/2 transform -translate-x-1/2 w-3 h-4 bg-gradient-to-b from-yellow-300 to-orange-500 rounded-full"></div>
+                    </div>
+                    <div id="candle2" class="absolute top-0 left-1/2 w-2 h-10 bg-gradient-to-b from-white to-red-200 rounded-t-sm">
+                        <div class="flame hidden absolute -top-4 left-1/2 transform -translate-x-1/2 w-3 h-4 bg-gradient-to-b from-yellow-300 to-orange-500 rounded-full"></div>
+                    </div>
+                    <div id="candle3" class="absolute top-0 left-3/4 w-2 h-14 bg-gradient-to-b from-white to-green-200 rounded-t-sm">
+                        <div class="flame hidden absolute -top-4 left-1/2 transform -translate-x-1/2 w-3 h-4 bg-gradient-to-b from-yellow-300 to-orange-500 rounded-full"></div>
+                    </div>
+                </div>
+            </div>
+            <p class="mt-4 text-gray-600">Click on the cake to light the candles!</p>
+        </section>
+
+        <section class="text-center mb-12">
+            <h2 class="text-2xl font-bold mb-4 dancing-script text-purple-700">A Special Video For You</h2>
+            <div id="video-container" class="hidden max-w-lg mx-auto mb-4">
+                <iframe width="100%" height="315" src="https://drive.google.com/file/d/1VDYXrLRi7lEvUO3hT36dyCUkn1cX3fcy/preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <button onclick="showVideo()" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full flex items-center mx-auto">
+                <i class="fas fa-play mr-2"></i> Play a Video
+            </button>
+        </section>
+    </main>
+
+    <footer class="bg-pink-700 text-white text-center py-6">
+        <p class="mb-2">Made with <i class="fas fa-heart text-red-300"></i> for Papa</p>
+        <p class="text-sm">© <span id="current-year"></span> Birthday Wishes</p>
+    </footer>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Photo changer with rotation classes
+        const photos = [
+            { src: "http://googleusercontent.com/file_content/0", rotation: "rotated-90" }, // WhatsApp Image 2025-07-12 at 12.19.20_b.jpg
+            { src: "http://googleusercontent.com/file_content/1", rotation: "rotated-90" }, // WhatsApp Image 2025-07-12 at 12.19.48_cd19c6f2.jpg
+            { src: "http://googleusercontent.com/file_content/2", rotation: "rotated-90" }, // WhatsApp Image 2025-07-12 at 12.21.14_9aa6c8ce.jpg
+            { src: "http://googleusercontent.com/file_content/4", rotation: "rotated-90" }, // WhatsApp Image 2025-07-12 at 12.27.56_cdfd305d.jpg
+            { src: "http://googleusercontent.com/file_content/5", rotation: "" }, // WhatsApp Image 2025-07-12 at 12.32.19_046b3c82.jpg
+            { src: "http://googleusercontent.com/file_content/3", rotation: "rotated-90" }  // WhatsApp Image 2025-07-12 at 12.22.09_3ed0e404.jpg
+        ];
+        let currentPhoto = 0;
+        
+        function changePhoto() {
+            currentPhoto = (currentPhoto + 1) % photos.length;
+            const photoElement = document.getElementById('papa-photo');
+            photoElement.src = photos[currentPhoto].src;
+            
+            // Remove previous rotation classes
+            photoElement.classList.remove('rotated-90', 'rotated-270', 'rotated-180');
+            // Add new rotation class if available
+            if (photos[currentPhoto].rotation) {
+                photoElement.classList.add(photos[currentPhoto].rotation);
+            }
+        }
+
+        // Candle lighting
+        function lightCandles() {
+            const candles = ['candle1', 'candle2', 'candle3'];
+            candles.forEach(candle => {
+                const flame = document.getElementById(candle).querySelector('.flame');
+                flame.classList.toggle('hidden');
+                
+                if (!flame.classList.contains('hidden')) {
+                    createConfetti();
+                }
+            });
+        }
+
+        // Confetti effect
+        function createConfetti() {
+            const container = document.getElementById('confetti-container');
+            const colors = ['#f00', '#0f0', '#00f', '#ff0', '#f0f', '#0ff'];
+            
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                
+                container.appendChild(confetti);
+                
+                // Animate confetti
+                const animation = confetti.animate([
+                    { opacity: 1, transform: `translateY(0) rotate(0deg)` },
+                    { opacity: 1, transform: `translateY(${Math.random() * 100 + 100}vh) rotate(${Math.random() * 360}deg)` }
+                ], {
+                    duration: Math.random() * 3000 + 2000,
+                    easing: 'cubic-bezier(0.1,0.8,0.3,1)'
+                });
+                
+                animation.onfinish = () => confetti.remove();
+            }
+        }
+
+        // Show video function
+        function showVideo() {
+            const videoContainer = document.getElementById('video-container');
+            videoContainer.classList.remove('hidden');
+            window.scrollTo({
+                top: videoContainer.offsetTop - 100,
+                behavior: 'smooth'
+            });
+        }
+
+        // Auto-scroll to top on load
+        window.onload = function() {
+            window.scrollTo(0, 0);
+        };
+    </script>
+</body>
+</html>
