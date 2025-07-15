@@ -8,8 +8,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
+
     .dancing-script { font-family: 'Dancing Script', cursive; }
     .poppins { font-family: 'Poppins', sans-serif; }
+
     .heart-beat {
       animation: heartbeat 1.5s ease-in-out infinite both;
     }
@@ -18,34 +20,134 @@
       25%, 75% { transform: scale(1.1); }
       50% { transform: scale(1); }
     }
+
     .photo-frame {
       border: 15px solid #f8d7a3;
       border-radius: 5px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
       transform: rotate(-3deg);
       transition: all 0.3s ease;
+      background: linear-gradient(135deg, #f5f7fa 0%, #f8d7a3 100%);
     }
     .photo-frame:hover {
       transform: rotate(0deg) scale(1.05);
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #f00;
+      opacity: 0;
+    }
+
+    .birthday-hat {
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-15deg);
+      font-size: 40px;
+      color: #f56565;
+      z-index: 10;
+    }
+
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 */
+      height: 0;
+      overflow: hidden;
+      max-width: 800px;
+      margin: 0 auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      border-radius: 10px;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .birthday-text {
+      background: linear-gradient(to right, #f56565, #f6ad55);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .floating {
+      animation: floating 3s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .music-control {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 100;
+      background: white;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      cursor: pointer;
     }
   </style>
 </head>
 <body class="bg-gradient-to-b from-pink-100 to-yellow-50 min-h-screen poppins overflow-x-hidden">
   <div id="confetti-container" class="fixed top-0 left-0 w-full h-full pointer-events-none z-50"></div>
 
-  <header class="text-center py-8 px-4">
-    <h1 class="text-4xl md:text-6xl font-bold dancing-script text-pink-600 mb-4">Happy Birthday Papa!</h1>
-    <div class="heart-beat inline-block">
+  <!-- Music Player (hidden) -->
+  <audio id="birthday-music" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    <!-- This is a placeholder happy birthday music -->
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Music Control Button -->
+  <div class="music-control" onclick="toggleMusic()">
+    <i id="music-icon" class="fas fa-volume-up text-pink-600 text-xl"></i>
+  </div>
+
+  <header class="text-center py-8 px-4 relative">
+    <div class="absolute top-0 left-0 right-0 flex justify-center">
+      <div class="flex space-x-4">
+        <i class="fas fa-star text-yellow-400 text-xl floating" style="animation-delay: 0s;"></i>
+        <i class="fas fa-star text-yellow-400 text-xl floating" style="animation-delay: 0.5s;"></i>
+        <i class="fas fa-star text-yellow-400 text-xl floating" style="animation-delay: 1s;"></i>
+      </div>
+    </div>
+    
+    <h1 class="text-4xl md:text-6xl font-bold dancing-script birthday-text mb-4 mt-6">Happy Birthday Papa!</h1>
+    
+    <div class="heart-beat inline-block relative">
+      <div class="birthday-hat">
+        <i class="fas fa-birthday-cake"></i>
+      </div>
       <i class="fas fa-heart text-red-500 text-4xl"></i>
     </div>
+    
+    <p class="text-xl md:text-2xl mt-4 text-gray-700 max-w-2xl mx-auto">
+      Wishing you a day filled with love, joy, and all the happiness you bring to our lives!
+    </p>
   </header>
 
   <main class="container mx-auto px-4 pb-12">
     <section class="flex justify-center mb-12">
-      <div class="photo-frame bg-white p-2 max-w-md">
-        <img id="papa-photo" src="https://iili.io/FWJBOhJ.md.jpg" alt="Papa" class="w-full h-auto object-contain transition-transform duration-300">
+      <div class="photo-frame bg-white p-2 max-w-md relative">
+        <img id="papa-photo" src="https://i.ibb.co/PZL7WNtM/Whats-App-Image-2025-07-12-at-12-32-19-046b3c82.jpg" alt="Papa" class="w-full h-auto object-contain transition-transform duration-300">
         <div class="text-center mt-3 space-x-2">
-          <button onclick="changePhoto()" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1 rounded-full text-sm">Change Photo</button>
           <button onclick="rotateImage(90)" class="bg-purple-500 hover:bg-purple-600 text-white px-3 py-1 rounded-full text-sm">↻ 90°</button>
           <button onclick="rotateImage(180)" class="bg-pink-500 hover:bg-pink-600 text-white px-3 py-1 rounded-full text-sm">↻ 180°</button>
           <button onclick="rotateImage(0)" class="bg-gray-500 hover:bg-gray-600 text-white px-3 py-1 rounded-full text-sm">Reset</button>
@@ -53,48 +155,34 @@
       </div>
     </section>
 
-    <section class="bg-white rounded-lg shadow-lg p-6 mb-12 max-w-3xl mx-auto">
-      <h2 class="text-2xl font-bold text-center text-purple-700 mb-4 dancing-script">To The World's Best Dad</h2>
-      <div class="text-gray-700 text-lg leading-relaxed">
-        <p class="mb-4">Dear Papa,</p>
-        <p class="mb-4">On your special day, I want to take a moment to tell you how much you mean to me. You've been my hero, my guide, and my biggest supporter throughout my life.</p>
-        <p class="mb-4">Your wisdom, strength, and unconditional love have shaped me into the person I am today. You've taught me the value of hard work, the importance of kindness, and the power of perseverance.</p>
-        <p class="mb-4">Today, I celebrate you — the man who has given so much and asked for so little in return. May this year bring you health, happiness, and all the joy you deserve.</p>
-        <p class="text-right font-bold text-pink-600">With all my love,</p>
-        <p class="text-right font-bold text-pink-600">A.Rishi</p>
+    <section class="mb-12">
+      <div class="text-center mb-6">
+        <h2 class="text-3xl font-bold dancing-script text-pink-600 mb-2">A Special Message For You</h2>
+        <div class="w-20 h-1 bg-pink-400 mx-auto"></div>
+      </div>
+      
+      <div class="bg-white rounded-lg shadow-lg p-6 max-w-3xl mx-auto">
+        <p class="text-lg text-gray-700 mb-4">
+          Dear Papa, on your special day, we want you to know how much you mean to us. Your love, guidance, and support have been the foundation of our lives. 
+        </p>
+        <p class="text-lg text-gray-700 mb-4">
+          May this year bring you health, happiness, and all the wonderful things you deserve. Enjoy your day to the fullest!
+        </p>
+        <p class="text-xl dancing-script text-pink-600">
+          With all our love,
+        </p>
       </div>
     </section>
 
-    <section class="bg-gradient-to-r from-yellow-100 to-pink-100 rounded-2xl p-8 mb-12 shadow-lg">
-      <h2 class="text-3xl font-bold text-center text-purple-700 mb-6 dancing-script">Birthday Wishes For You</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="bg-white p-6 rounded-lg shadow-md">
-          <h3 class="text-xl font-semibold mb-3 text-blue-600">Health & Happiness</h3>
-          <p class="text-gray-700">May you be blessed with excellent health and boundless happiness in the coming year.</p>
-        </div>
-        <div class="bg-white p-6 rounded-lg shadow-md">
-          <h3 class="text-xl font-semibold mb-3 text-green-600">Peace & Prosperity</h3>
-          <p class="text-gray-700">May peace fill your days and prosperity follow all your endeavors.</p>
-        </div>
-        <div class="bg-white p-6 rounded-lg shadow-md">
-          <h3 class="text-xl font-semibold mb-3 text-yellow-600">Adventure & Joy</h3>
-          <p class="text-gray-700">May you experience wonderful adventures and find joy in every moment.</p>
-        </div>
-        <div class="bg-white p-6 rounded-lg shadow-md">
-          <h3 class="text-xl font-semibold mb-3 text-red-600">Love & Appreciation</h3>
-          <p class="text-gray-700">May you feel loved and appreciated every day, just as you've made us feel all our lives.</p>
-        </div>
+    <section class="mb-12">
+      <div class="text-center mb-6">
+        <h2 class="text-3xl font-bold dancing-script text-pink-600 mb-2">A Special Video For You</h2>
+        <div class="w-20 h-1 bg-pink-400 mx-auto"></div>
       </div>
-    </section>
-
-    <section class="text-center mb-12">
-      <h2 class="text-2xl font-bold mb-4 dancing-script text-purple-700">A Special Video For You</h2>
-      <div id="video-container" class="hidden max-w-lg mx-auto mb-4">
-        <iframe width="100%" height="315" src="https://drive.google.com/file/d/1VDYXrLRi7lEvUO3hT36dyCUkn1cX3fcy/preview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      
+      <div class="video-container">
+        <iframe src="https://drive.google.com/file/d/1869WnnNHlIZzTGNfMH1RffaBpiqq-9KN/preview" allow="autoplay"></iframe>
       </div>
-      <button onclick="showVideo()" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-full flex items-center mx-auto">
-        <i class="fas fa-play mr-2"></i> Play a Video
-      </button>
     </section>
   </main>
 
@@ -106,24 +194,46 @@
   <script>
     document.getElementById('current-year').textContent = new Date().getFullYear();
 
-    const photos = [
-      { src: "https://iili.io/FWJBOhJ.md.jpg" },
-      { src: "https://iili.io/FWJB81p.md.jpg" },
-      { src: "https://iili.io/FWJBvBR.md.jpg" },
-      { src: "https://iili.io/FWJBeLv.md.jpg" },
-      { src: "https://iili.io/FWJBg2I.md.jpg" },
-      { src: "https://iili.io/FWJBr7t.md.jpg" }
-    ];
+    // Music functionality
+    const birthdayMusic = document.getElementById('birthday-music');
+    const musicIcon = document.getElementById('music-icon');
+    let isMusicPlaying = false;
 
-    let currentPhoto = 0;
-    let currentRotation = 0;
-
-    function changePhoto() {
-      currentPhoto = (currentPhoto + 1) % photos.length;
-      const img = document.getElementById('papa-photo');
-      img.src = photos[currentPhoto].src;
-      rotateImage(0); // Reset rotation
+    // Function to play music with user interaction
+    function playMusic() {
+      // Many browsers block autoplay, so we'll try to play after user interaction
+      birthdayMusic.play()
+        .then(() => {
+          isMusicPlaying = true;
+          musicIcon.className = 'fas fa-volume-up text-pink-600 text-xl';
+        })
+        .catch(error => {
+          console.log('Autoplay prevented:', error);
+          // Show a button to allow user to start music
+        });
     }
+
+    // Try to play music when page loads
+    window.addEventListener('load', function() {
+      // Create a fake user interaction event to enable audio
+      document.body.click();
+      playMusic();
+    });
+
+    // Toggle music play/pause
+    function toggleMusic() {
+      if (isMusicPlaying) {
+        birthdayMusic.pause();
+        musicIcon.className = 'fas fa-volume-mute text-pink-600 text-xl';
+      } else {
+        birthdayMusic.play();
+        musicIcon.className = 'fas fa-volume-up text-pink-600 text-xl';
+      }
+      isMusicPlaying = !isMusicPlaying;
+    }
+
+    // Image rotation
+    let currentRotation = 0;
 
     function rotateImage(degrees) {
       currentRotation = degrees;
@@ -131,11 +241,45 @@
       img.style.transform = `rotate(${degrees}deg)`;
     }
 
-    function showVideo() {
-      const videoContainer = document.getElementById('video-container');
-      videoContainer.classList.remove('hidden');
-      window.scrollTo({ top: videoContainer.offsetTop - 100, behavior: 'smooth' });
+    // Create confetti
+    function createConfetti() {
+      const colors = ['#f56565', '#f6ad55', '#68d391', '#63b3ed', '#b794f4'];
+      const container = document.getElementById('confetti-container');
+      
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.top = -10 + 'px';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.width = Math.random() * 10 + 5 + 'px';
+        confetti.style.height = Math.random() * 10 + 5 + 'px';
+        confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+        container.appendChild(confetti);
+        
+        animateConfetti(confetti);
+      }
     }
+
+    function animateConfetti(confetti) {
+      const duration = Math.random() * 3 + 2;
+      confetti.style.opacity = 1;
+      confetti.style.transform = `translate(${Math.random() * 200 - 100}px, ${window.innerHeight}px) rotate(${Math.random() * 360}deg)`;
+      confetti.style.transition = `all ${duration}s linear`;
+      
+      setTimeout(() => {
+        confetti.style.opacity = 0;
+        setTimeout(() => {
+          confetti.remove();
+        }, 300);
+      }, duration * 900);
+    }
+
+    // Initial confetti burst
+    createConfetti();
+    
+    // Confetti every 5 seconds
+    setInterval(createConfetti, 5000);
   </script>
 </body>
 </html>
